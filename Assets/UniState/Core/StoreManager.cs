@@ -7,7 +7,7 @@ namespace UniState.Core
         public static StoreManager Instance => instance ??= new StoreManager();
         
         private static StoreManager instance = null;
-        private Dictionary<string, object> stores = new ();
+        private readonly Dictionary<string, IStore> stores = new ();
         
         public void RegisterStore<T>(string key, Store<T> store)
         {
@@ -22,7 +22,7 @@ namespace UniState.Core
             return null;
         }
 
-        public Dictionary<string, object> GetAllStores()
+        public Dictionary<string, IStore> GetAllStores()
         {
             return stores;
         }
