@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace UniState.Core
 {
-    public class Store<T>
+    public class Store<T> : IStore
     {
         private T state;
         private readonly List<Action<T>> listeners = new List<Action<T>>();
