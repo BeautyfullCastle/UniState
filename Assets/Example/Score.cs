@@ -28,7 +28,8 @@ namespace Example
 
         private void OnDestroy()
         {
-            StoreManager.Instance.GetStore<int>(ScoreKey)?.RemoveListener(scoreListener);
+            if(StoreManager.Instance.GetStore(ScoreKey) is Store<int> store)
+                store.RemoveListener(scoreListener);
         }
 
         private IEnumerator IncrementScoreEveryFiveSeconds()
@@ -44,11 +45,10 @@ namespace Example
 
         public void IncreaseScore(int amount)
         {
-            var scoreStore = StoreManager.Instance.GetStore<int>(ScoreKey);
-            if (scoreStore != null)
+            if(StoreManager.Instance.GetStore(ScoreKey) is Store<int> store)
             {
-                int currentScore = scoreStore.GetState();
-                scoreStore.UpdateState(currentScore + amount);
+                int currentScore = store.GetState();
+                store.UpdateState(currentScore + amount);
             }
         }
     }

@@ -9,15 +9,15 @@ namespace UniState.Core
         private static StoreManager instance = null;
         private readonly Dictionary<string, IStore> stores = new ();
         
-        public void RegisterStore<T>(string key, Store<T> store)
+        public void RegisterStore(string key, IStore store)
         {
             stores[key] = store;
         }
 
-        public Store<T> GetStore<T>(string key)
+        public IStore GetStore(string key)
         {
             if (stores.TryGetValue(key, out var store))
-                return store as Store<T>;
+                return store;
             
             return null;
         }
