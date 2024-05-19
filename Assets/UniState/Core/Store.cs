@@ -6,7 +6,7 @@ namespace UniState.Core
     public class Store<T> : IStore
     {
         private T state;
-        private readonly List<Action<T>> listeners = new List<Action<T>>();
+        private readonly List<Action<T>> listeners = new();
 
         public Store(T initialState)
         {
@@ -34,7 +34,7 @@ namespace UniState.Core
             listeners.Remove(listener);
         }
 
-        private void NotifyStateChanged()
+        protected void NotifyStateChanged()
         {
             foreach (var listener in listeners)
             {
