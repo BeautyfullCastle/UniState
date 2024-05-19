@@ -7,64 +7,75 @@ using UniState.Core;
 using UnityEngine;
 
 namespace UniState.Example
-
 {
     using CollectionStoreType = ListStore<int>;
     
     public class Scores: MonoBehaviour
     {
-        [SerializeField] private Text scoreText;
+        [SerializeField] private Text text;
 
-        private Action<ICollection<int>> scoreListener;
+        private Action<List<int>> listener;
         
-        private const string ScoreKey = "score";
+        private const string key = "scores";
         
         private IEnumerator Start()
         {
-            var list = new List<int>();
-            list.Add(0);
-            var scoreStore = new CollectionStoreType(list);
-            scoreListener = (value) =>
+            var scoreStore = new CollectionStoreType(new List<int>{0, 0});
+            listener = (list) =>
             {
-                if (value is List<int> l)
-                {
-                    var sb = new StringBuilder();
-                    l.ForEach(item => sb.Append(item).Append(", "));
-                    this.scoreText.text = sb.ToString();
-                }
-                    
+                    var stringBuilder = new StringBuilder();
+                    stringBuilder.Append("[");
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        stringBuilder.Append(list[i]);
+                        if(i < list.Count -1)
+                            stringBuilder.Append(", ");
+                    }
+                    stringBuilder.Append("]");
+                    text.text = stringBuilder.ToString();
             };
-            scoreStore.AddListener(scoreListener);
+            scoreStore.AddListener(listener);
             
-            StoreManager.Instance.RegisterStore(ScoreKey, scoreStore);
+            StoreManager.Instance.RegisterStore(key, scoreStore);
 
-            yield return IncrementScoreEveryFiveSeconds();
+            yield return IncrementScores();
         }
 
         private void OnDestroy()
         {
-            if(StoreManager.Instance.GetStore(ScoreKey) is CollectionStoreType store)
-                store.RemoveListener(scoreListener);
+            if(StoreManager.Instance.GetStore(key) is CollectionStoreType listStore)
+                listStore.RemoveListener(listener);
         }
 
-        private IEnumerator IncrementScoreEveryFiveSeconds()
+        private IEnumerator IncrementScores()
         {
+            var waiter = new WaitForSeconds(0.1f);
             while (this.gameObject.activeSelf)
             {
-                yield return new WaitForSeconds(0.5f);
-                IncreaseScore(1);
+                yield return waiter;
+                IncreaseScore(0, 1);
+                IncreaseScore(1, 2);
             }
 
             yield break;
         }
 
-        public void IncreaseScore(int amount)
+        private void IncreaseScore(int index, int amount)
         {
-            var store = StoreManager.Instance.GetStore(ScoreKey);
-            if (store is CollectionStoreType s)
+            if (StoreManager.Instance.GetStore(key) is CollectionStoreType listStore)
             {
-                s.Add(amount);
+                listStore[index] += amount;
             }
+        }
+        
+        public void IncreaseScoreAtZero(int amount)
+        {
+            IncreaseScore(0, amount);
+        }
+        
+        public void IncreaseScoreAtOne(int amount)
+        {
+            IncreaseScore(1, amount);
         }
     }
 }

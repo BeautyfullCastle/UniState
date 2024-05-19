@@ -70,6 +70,7 @@ namespace UniState.Core
                     return;
                 
                 this[index] = value1;
+                NotifyStateChanged();
             }
         }
 
@@ -104,6 +105,7 @@ namespace UniState.Core
             if (value is T value1)
             {
                 list.Add(value1);
+                NotifyStateChanged();
                 return this.list.Count - 1;
             }
 
@@ -135,19 +137,26 @@ namespace UniState.Core
 
         void IList.Insert(int index, object value)
         {
-            if(value is T tValue)
+            if (value is T tValue)
+            {
                 list.Insert(index, tValue);
+                NotifyStateChanged();
+            }
         }
 
         void IList.Remove(object value)
         {
             if (value is T tValue)
+            {
                 list.Remove(tValue);
+                NotifyStateChanged();
+            }
         }
 
         void IList.RemoveAt(int index)
         {
             list.RemoveAt(index);
+            NotifyStateChanged();
         }
 
         public bool IsFixedSize => false;
@@ -170,17 +179,23 @@ namespace UniState.Core
         public void Insert(int index, T item)
         {
             list.Insert(index, item);
+            NotifyStateChanged();
         }
 
         void IList<T>.RemoveAt(int index)
         {
             list.RemoveAt(index);
+            NotifyStateChanged();
         }
 
         public T this[int index]
         {
             get => list[index];
-            set => list[index] = value;
+            set
+            {
+                list[index] = value;
+                NotifyStateChanged();
+            }
         }
     }
 }
