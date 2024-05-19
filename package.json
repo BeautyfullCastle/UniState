@@ -1,0 +1,16 @@
+{
+  "name": "com.beautyfullcastle.unistate",
+  "version": "1.0.0",
+  "displayName": "UniState",
+  "description": "Unity state management tool inspired by Zustand.",
+  "unity": "2019.3",
+  "documentationUrl": "https://github.com/BeautyfullCastle/UniState/",
+  "keywords": [
+    "state",
+    "zustand"
+  ],
+  "author": {
+    "name": "Hyunsoo Kim",
+    "email": "hot4133@gmail.com",
+    "url": "http://beautyfullcastle.blogspot.com/"
+  }

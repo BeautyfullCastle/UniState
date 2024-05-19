@@ -1,0 +1,18 @@
+{
+    "name": "beautyfullcastle.unistate.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c831135470219aa4eae307c16c21d191"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
