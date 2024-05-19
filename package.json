@@ -13,4 +13,17 @@
     "name": "Hyunsoo Kim",
     "email": "hot4133@gmail.com",
     "url": "http://beautyfullcastle.blogspot.com/"
-  }
+  },
+  "samples": [
+        {
+            "displayName": "Basic",
+            "description": "Show an int store",
+            "path": "Samples~/Basic"
+        },
+        {
+            "displayName": "List",
+            "description": "Show an int list store",
+            "path": "Samples~/List"
+        }
+  ]
+}
