@@ -11,9 +11,11 @@ It allows developers to create Stores, register them with the StoreManager, and 
 
 This tool aims to simplify state management in Unity projects, providing a more streamlined and effective development experience.
 
+### Install
+You can add this package using Package Manager with 'Add package from git URL' button.
 
 ### Usage
-To see how UniState is used, refer to the `Score` class example located in the `Assets/Example` directory of this project.
+To see how UniState is used, refer to the `Score` class example in Samples.
 
 It demonstrates how to integrate and utilize state management within your Unity games or applications.
 
@@ -58,9 +60,11 @@ UniState는 Zustand 스타일로 Unity에서 상태를 관리하는 도구입니
 
 이 도구는 Unity 프로젝트의 상태 관리를 단순화하여 보다 효율적인 개발 경험을 제공하는 것을 목표로 합니다.
 
+### Install
+패키지 매니저에서 'Add package from git URL' 버튼으로 위 패키지의 git url을 추가해 설치가 가능합니다.
 
 ### 사용 방법
-UniState의 사용 방법을 보려면 이 프로젝트의 `Assets/Example` 디렉토리에 위치한 `Score` 클래스 예제를 참조하세요.
+UniState의 사용 방법을 보려면 이 프로젝트의 Examples 폴더의 예제를 참조하세요.
 
 이 예제는 Unity 게임이나 애플리케이션 내에서 상태 관리를 통합하고 활용하는 방법을 보여줍니다.
 
